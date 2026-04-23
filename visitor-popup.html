@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Say your Name !</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="nrfavicon.png">
+<style>
+  :root {
+    --bg: #080808;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --border: #222222;
+    --green: #39ff6a;
+    --green-dim: #39ff6a18;
+    --green-border: #39ff6a33;
+    --white: #f5f5f5;
+    --gray: #888888;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  /* ── OVERLAY ── */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .popup-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── CARD ── */
+  .popup-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 36px 32px;
+    width: 340px;
+    text-align: left;
+    transform: translateY(28px) scale(0.96);
+    transition: transform 0.38s cubic-bezier(0.34,1.56,0.64,1);
+    font-family: var(--font-display);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle green corner glow */
+  .popup-card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, #39ff6a18 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .popup-overlay.active .popup-card {
+    transform: translateY(0) scale(1);
+  }
+
+  /* ── LABEL ── */
+  .popup-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .popup-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .popup-card h2 .accent { color: var(--green); }
+
+  .popup-card p {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+    color: var(--gray);
+    margin: 0 0 28px;
+  }
+
+  /* ── INPUT ── */
+  .popup-card input {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--white);
+    font-size: 0.88rem;
+    font-family: var(--font-mono);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 14px;
+  }
+  .popup-card input:focus {
+    border-color: var(--green);
+    background: #39ff6a08;
+  }
+  .popup-card input::placeholder { color: #444; }
+
+  /* ── BUTTON ── */
+  .popup-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: var(--green);
+    color: #080808;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .popup-card button:hover { opacity: 0.88; transform: translateY(-1px); }
+  .popup-card button:active { transform: scale(0.98) translateY(0); }
+  .popup-card button:disabled {
+    background: var(--bg3);
+    color: var(--gray);
+    border: 1px solid var(--border);
+    cursor: not-allowed;
+    transform: none;
+    opacity: 1;
+  }
+
+  /* ── STATUS ── */
+  .popup-status {
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    min-height: 18px;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+  }
+  .popup-status.success { color: var(--green); }
+  .popup-status.error   { color: #ff4d4d; }
+
+  /* ── SKIP ── */
+  .popup-skip {
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #444;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .popup-skip:hover { color: var(--gray); border-color: var(--gray); }
+
+  /* ── DIVIDER LINE ── */
+  .popup-divider {
+    width: 32px;
+    height: 2px;
+    background: var(--green);
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body style="background:#080808;">
+
+<div class="popup-overlay active" id="visitorPopup">
+  <div class="popup-card">
+    <span class="popup-label">// visitor log</span>
+    <h2>Hey,<br>who's <span class="accent">here?</span></h2>
+    <div class="popup-divider"></div>
+    <p>Drop your name — I'd love to know who's checking out my web.</p>
+
+    <input
+      type="text"
+      id="visitorName"
+      placeholder="Your name…"
+      maxlength="60"
+      autocomplete="off"
+    />
+
+    <button id="sendBtn" onclick="sendVisitorName()">Say Hello →</button>
+    <div class="popup-status" id="popupStatus"></div>
+   <!-- <div class="popup-skip" onclick="closePopup()">Skip for now</div> -->
+    <a class="popup-skip" href="index.html">Skip for now</a>
+  </div>
+</div>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  const EMAILJS_PUBLIC_KEY  = "3rIuDspXlnnjqvWvK";
+  const EMAILJS_SERVICE_ID  = "service_5zkpxtq";
+  const EMAILJS_TEMPLATE_ID = "template_2x45mai";
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  window.addEventListener("load", () => {
+    setTimeout(() => document.getElementById("visitorPopup").classList.add("active"), 600);
+  });
+
+  document.getElementById("visitorName")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") sendVisitorName();
+  });
+
+  async function sendVisitorName() {
+    const nameInput = document.getElementById("visitorName");
+    const btn       = document.getElementById("sendBtn");
+    const status    = document.getElementById("popupStatus");
+    const name      = nameInput.value.trim();
+
+    if (!name) {
+      status.textContent = "// please enter your name first";
+      status.className   = "popup-status error";
+      return;
+    }
+
+    btn.disabled     = true;
+    btn.textContent  = "Sending…";
+    status.textContent = "";
+    status.className   = "popup-status";
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        visitor_name: name,
+        subject:      `Portfolio visit — ${name}`,
+        to_email:     "contact@nilusha.me",
+        visit_time:   new Date().toLocaleString("en-US", { timeZone: "Asia/Colombo" }),
+        page_url:     window.location.href,
+      });
+
+      status.textContent = "✓ Thanks! Message sent.";
+      status.className   = "popup-status success";
+      setTimeout(closePopup, 1500);
+
+    } catch (err) {
+      console.error(err);
+      status.textContent = "// couldn't send — please try again";
+      status.className   = "popup-status error";
+      btn.disabled       = false;
+      btn.textContent    = "Say Hello →";
+    }
+  }
+
+  function closePopup() {
+    document.getElementById("visitorPopup").classList.remove("active");
+  }
+</script>
+
+</body>
+</html>

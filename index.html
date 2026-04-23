@@ -2,46 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nilusha Portfolio</title>
-  <link rel="icon" href="favicon.jpg" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nilusha Ravishan </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="nrfavicon.png">
 </head>
 <body>
 
-  <header>
-    <h1>Site is under construction don't take things serious</h1>
-    <h1>Nilusha Senadeera</h1>
-    <p>Robotics & Software Developer</p>
-  </header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I build robotics projects, computer vision systems, and web apps.</p>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-
-    <div class="card">
-      <h3>TT Ball Thrower</h3>
-      <p>Automatic table tennis ball machine.</p>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="avatar-wrap">
+        <img src="NS (1).jpeg" alt="Nilusha Ravishan" class="avatar-placeholder">
+        <span class="status-dot"></span>
+        <!--  <div class="avatar-wrap">
+  <img src="NS.jpeg" alt="Nilusha Senadeera" class="avatar-placeholder">
+  <span class="status-dot"></span>
+        <span class="status-dot"></span>   -->
+      </div>
+      <h2 class="profile-name">Nilusha<br>Ravishan</h2>
+      <span class="profile-role">IT Undergraduate</span>
+      <a href="mailto:contact@nilusha.me" class="profile-email">contact@nilusha.me</a>
+      <span class="profile-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Sri Lanka
+      </span>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/nilushar/" class="social-btn" title="LinkedIn" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/Nilusha01" class="social-btn" title="GitHub" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        </a>
+        <a href="https://www.instagram.com/nilusha_r/" class="social-btn" title="INSTAGRAM" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>Color Sorting Robot</h3>
-      <p>Robot that detects and sorts objects by color.</p>
-    </div>
+    <nav class="sidebar-nav">
+      <a href="#about" class="nav-link active" data-section="about">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        About
+      </a>
+      <a href="#projects" class="nav-link" data-section="projects">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Projects
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+      <a href="me.html" class="nav-link nav-link--me">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Me
+        <span class="nav-ext-icon">↗</span>
+      </a>
+    </nav>
+  </aside>
 
-  </section>
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: contact@nilusha.me</p>
-  </section>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <span class="section-label">01 / About</span>
+      <h1 class="section-title">Hello! I'm <br><span class="accent">Nilusha</span> </h1>
+      <p class="section-body">
+       IT Undergraduate | Developer | Tech Enthusiast <br> <br>
+       A motivated IT undergraduate at the University of Moratuwa, Sri Lanka, enthusiastic about the IT industry and dedicated to learning and applying emerging technologies. 
+      </p>
 
-  <footer>
-    <p>© 2026 Nilusha</p>
-  </footer>
+      <div class="skills-grid">
+        <div class="skill-tag">Arduino</div>
+        <div class="skill-tag">Python</div>
+        <div class="skill-tag">Edge Impulse </div>
+        <div class="skill-tag">Robotics</div>
+        <div class="skill-tag">JavaScript</div>
+        <div class="skill-tag">HTML / CSS</div>
+        <div class="skill-tag">C</div>
+      </div>
 
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Passion</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Learning Mindset</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Goal: Build Cool Things</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <span class="section-label">02 / Projects</span>
+      <h2 class="section-title">Featured<br><span class="accent">Work</span></h2>
+
+      <div class="projects-list">
+
+        <div class="project-card">
+          <div class="project-num">01/</div>
+          <div class="project-info">
+            <h3 class="project-title">Alpha Buddy</h3>
+            <p class="project-desc">Alpha Buddy is an interactive English-learning toy robot, currently under development by our
+               team as part of our first-year hardware project in the IT degree program at the University of Moratuwa.</p>
+            <div class="project-tags">
+              <span>ESP 32</span><span>Hardware</span><span>Motor Control</span> <span>Edge Impulse</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">GitHub ↗</a>
+            <a href="#" class="project-link">Demo ↗</a>
+          </div>
+        </div>
+
+       <!-- <div class="project-card">
+          <div class="project-num">02/</div>
+          <div class="project-info">
+            <h3 class="project-title">Color Sorting Robot</h3>
+            <p class="project-desc">Python and OpenCV-powered robot that detects objects by color in real-time and physically sorts them into designated bins using servo mechanisms.</p>
+            <div class="project-tags">
+              <span>Python</span><span>OpenCV</span><span>Robotics</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">GitHub ↗</a>
+            <a href="#" class="project-link">Demo ↗</a>
+          </div>
+        </div> -->
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section--contact">
+      <span class="section-label">03 / Contact</span>
+      <h2 class="section-title">Let's <br><span class="accent">Get</span><br>Together</h2>
+
+      <a href="mailto:contact@nilusha.me" class="contact-email">contact@nilusha.me</a>
+
+      <p class="contact-sub">Open to collaborations, internships, and cool projects.</p>
+
+      <div class="contact-actions">
+        <a href="mailto:contact@nilusha.me" class="btn-primary">Send a Message</a>
+        <a href="visitor-popup.html" class="btn-ghost">Notify me</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 Nilusha Senadeera. All Rights Reserved.</span>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
